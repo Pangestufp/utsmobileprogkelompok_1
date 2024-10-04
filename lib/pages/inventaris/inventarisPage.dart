@@ -1,5 +1,6 @@
 import 'package:app_manajemen_umkm/pages/beranda/homePage.dart';
 import 'package:app_manajemen_umkm/pages/inventaris/tambahkanProduk.dart';
+import 'package:app_manajemen_umkm/pages/inventaris/tambahkanStock.dart';
 import 'package:bounce_tapper/bounce_tapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -19,42 +20,44 @@ class _InventarisPageState extends State<InventarisPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>TambahkanProduk()));
-                    },
-                    child: BounceTapper(
-                      shrinkScaleFactor: 0.7,
-                      child: Card(
-                        color: Colors.amber,
-                        child: Container(
-                            width: 180,
-                            height: 160,
-                            child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Image.asset("assets/icons/addProduct.png",color: Colors.white,width: 100,),
-                                      Text(
-                                        "Tambahkan Produk",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                    ],
-                                  ),
-                                ))),
-                      ).animate().scale(),
-                    ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>TambahkanProduk()));
+                  },
+                  child: BounceTapper(
+                    shrinkScaleFactor: 0.7,
+                    child: Card(
+                      color: Colors.amber,
+                      child: Container(
+                          width: 180,
+                          height: 160,
+                          child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/icons/addProduct.png",color: Colors.white,width: 100,),
+                                    Text(
+                                      "Tambahkan Produk",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                              ))),
+                    ).animate().scale(),
                   ),
-                  SizedBox(width: 20,),
-                  BounceTapper(
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>TambahkanStock()));
+                  },
+                  child: BounceTapper(
                     shrinkScaleFactor: 0.7,
                     child: Card(
                       color: Colors.amber,
@@ -78,9 +81,9 @@ class _InventarisPageState extends State<InventarisPage> {
                                 ),
                               ))),
                     ).animate().scale(),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
           Expanded(

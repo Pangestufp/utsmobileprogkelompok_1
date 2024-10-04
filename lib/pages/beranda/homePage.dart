@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      widget.changePage(2);
+                      widget.changePage(3);
                     },
                     child: BounceTapper(
                       shrinkScaleFactor: 0.8,
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      widget.changePage(3);
+                      widget.changePage(2);
                     },
                     child: BounceTapper(
                       shrinkScaleFactor: 0.8,

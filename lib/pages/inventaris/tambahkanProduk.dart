@@ -166,7 +166,7 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text('Submit'),
+                    child: Text(_edit == true ? "Edit" : "Tambahkan",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),),
                   ),
                   SizedBox(height: 20),
                 ],
