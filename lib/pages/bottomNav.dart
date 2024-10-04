@@ -35,8 +35,8 @@ class _BottomNavState extends State<BottomNav> {
     penjualanPage = PenjualanPage();
     keuanganPage = KeuanganPage();
 
-    _listPages = [homePage, inventarisPage,penjualanPage,keuanganPage];
-    _listNamePages = ["Beranda", "Inventaris", "Penjualan", "Keuangan"];
+    _listPages = [homePage, inventarisPage,keuanganPage,penjualanPage];
+    _listNamePages = ["Beranda", "Inventaris", "Keuangan", "Penjualan"];
     _currentPage = homePage;
     _currentNamePage = "Beranda";
 
@@ -94,21 +94,32 @@ class _BottomNavState extends State<BottomNav> {
           ),
           Icon(
             _currentIndex == 2
-                ? Icons.shopping_cart
-                : Icons.shopping_cart_outlined,
+                ? Icons.monetization_on
+                : Icons.monetization_on_outlined,
             size: 40,
             color: Colors.white,
           ),
           Icon(
             _currentIndex == 3
-                ? Icons.monetization_on
-                : Icons.monetization_on_outlined,
+                ? Icons.shopping_cart
+                : Icons.shopping_cart_outlined,
             size: 40,
             color: Colors.white,
           ),
         ],
         onTap: (selectedIndex) => _changePage(selectedIndex),
       ),
+
+      floatingActionButton: _currentIndex == 2
+          ? FloatingActionButton(
+        onPressed: () {
+          print("Floating Action Button di halaman Keuangan ditekan");
+        },
+        backgroundColor: Colors.amber,
+        child: Icon(Icons.add),
+      )
+          : null,
+
     );
   }
 }

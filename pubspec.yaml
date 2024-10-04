@@ -14,6 +14,8 @@ dependencies:
   flutter_animate:
   bounce_tapper:
   animated_splash_screen:
+  path_provider:
+  image_picker:
 
 dev_dependencies:
   flutter_test:
