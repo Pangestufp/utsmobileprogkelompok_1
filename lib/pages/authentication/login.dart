@@ -21,19 +21,33 @@ class _LoginState extends State<Login> {
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          Positioned.fill(
-            child: LottieBuilder.asset(
-              "assets/lotties/backgroundLogin.json",
-              fit: BoxFit.cover,// memastikan background menutupi seluruh layar
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: Positioned.fill(
+              child: LottieBuilder.asset(
+                "assets/lotties/backgroundLogin.json",
+                fit: BoxFit.fill,// memastikan background menutupi seluruh layar
+              ),
             ),
           ),
-
+          Container(
+            alignment: Alignment.topCenter,
+            child: Positioned.fill(
+              child: LottieBuilder.asset(
+                "assets/lotties/backgroundLogin.json",
+                fit: BoxFit.fill,// memastikan background menutupi seluruh layar
+              ),
+            ),
+          ),
           SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(top: 300, left: 60, right: 60),
+              padding: EdgeInsets.only(top: 100, left: 60, right: 60),
               child: Form(
                   child: Column(
                 children: [
+                  Image.asset("assets/icons/icon moporg fix.png",width: 300,)
+                      .animate()
+                      .fade(duration: Duration(seconds: 3)),
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Email',
@@ -97,60 +111,14 @@ class _LoginState extends State<Login> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Register()));
                       },
-                      child: Text("Sign up",style: TextStyle(color: Colors.amber),))
+                      child: Text("Sign up",style: TextStyle(color: Colors.amber),)),
                 ],
               )),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Image.asset("assets/icons/icon moporg fix.png")
-                .animate()
-                .fade(duration: Duration(seconds: 3)),
-          )
+
         ],
       ),
     );
   }
 }
-
-// child: TextFormField(
-// obscureText: _showHide,
-// controller: _password,
-// style: TextStyle(color: Colors.white),
-// decoration: InputDecoration(
-// hintText: 'Password',
-// hintStyle: TextStyle(color: Colors.white),
-// labelStyle: TextStyle(color: Colors.white),
-// enabledBorder: OutlineInputBorder(
-// borderRadius: BorderRadius.circular(30),
-// borderSide: BorderSide(color: Colors.white, width: 1)),
-// focusedBorder: OutlineInputBorder(
-// borderRadius: BorderRadius.circular(30),
-// borderSide: BorderSide(color: Colors.white, width: 1)),
-// errorBorder: OutlineInputBorder(
-// borderRadius: BorderRadius.circular(30),
-// borderSide: BorderSide(color: Colors.white, width: 1)),
-// focusedErrorBorder: OutlineInputBorder(
-// borderRadius: BorderRadius.circular(30),
-// borderSide: BorderSide(color: Colors.white, width: 1)),
-// suffixIcon: IconButton(
-// icon: Icon(
-// _showHide ? Icons.visibility_off : Icons.visibility,
-// color: Colors.white,
-// ),
-// onPressed: () {
-// setState(() {
-// _showHide = !_showHide;
-// });
-// },
-// ),
-// ),
-// autofocus: false,
-// validator: (value) {
-// if (value!.isEmpty || value == null) {
-// return 'Password tidak boleh Kosong';
-// }
-// return null;
-// },
-// ),
