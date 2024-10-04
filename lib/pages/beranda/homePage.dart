@@ -67,7 +67,8 @@ class _HomePageState extends State<HomePage> {
               child: LottieBuilder.asset(
                 "assets/lotties/orangTerbangberanda.json",
                 width: MediaQuery.of(context).size.width/1.6,
-              )),
+              )
+          ),
           Container(
             padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 3+20,left: 10),
             child: SingleChildScrollView(
