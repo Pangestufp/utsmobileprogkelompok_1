@@ -132,8 +132,31 @@ class _KeuanganPageState extends State<KeuanganPage> {
                 ),
               ),
             ),
-          )
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                ListTile(
+                  title: Text("Pengeluaran"),
+                  subtitle: Text("Biaya Sewa: "),
+                  trailing: Text("Rp. 10.000.000"),
+                  leading: Image.asset( "assets/images/spending.png"),
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
 
+                ListTile(
+                  title: Text("Pengeluaran"),
+                  subtitle: Text("Gaji Karyawan: "),
+                  trailing: Text("Rp. 40.000.000"),
+                  leading: Image.asset( "assets/images/spending.png"),
+                ),
+
+            
+              ],
+            ),
+          )
         ],
       ),
     );
