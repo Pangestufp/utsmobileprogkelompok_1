@@ -93,10 +93,10 @@ class _InventarisPageState extends State<InventarisPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: Text(
-                    "20",
+                    "6",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
@@ -109,7 +109,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     "1800",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
@@ -122,7 +122,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     "200",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
@@ -135,7 +135,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     "100", // Tambahkan angka jika ada
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
