@@ -1,3 +1,4 @@
+import 'package:app_manajemen_umkm/pages/keuangan/laporanKeuangan.dart';
 import 'package:flutter/material.dart';
 
 class KeuanganPage extends StatefulWidget {
@@ -29,11 +30,14 @@ class _KeuanganPageState extends State<KeuanganPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Keuangan Page'),
+      ),
+      body: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height/3,
+            height: MediaQuery.of(context).size.height / 3,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -51,11 +55,12 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   },
                 ),
                 Container(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(_currentIndex==0?"Penjualan":"Pengeluaran"),
-                    )),
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(_currentIndex == 0 ? "Penjualan" : "Pengeluaran"),
+                  ),
+                ),
                 if (_currentIndex != 0)
                   Positioned(
                     left: 10,
@@ -73,7 +78,6 @@ class _KeuanganPageState extends State<KeuanganPage> {
                       ),
                     ),
                   ),
-
                 if (_currentIndex != 1)
                   Positioned(
                     right: 10,
@@ -94,7 +98,6 @@ class _KeuanganPageState extends State<KeuanganPage> {
               ],
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
             child: Card(
@@ -109,12 +112,19 @@ class _KeuanganPageState extends State<KeuanganPage> {
                       padding: const EdgeInsets.only(left: 25),
                       child: Column(
                         children: [
-                          Text("Laba Bersih (Bulan)",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                          Text(
+                            "Laba Bersih (Bulan)",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10, bottom: 10),
-                            child: Text("RP.100.000.000", style: TextStyle(fontSize: 15, color: Colors.white),),
+                            child: Text(
+                              "RP.100.000.000",
+                              style: TextStyle(fontSize: 15, color: Colors.white),
+                            ),
                           )
                         ],
                       ),
@@ -126,7 +136,20 @@ class _KeuanganPageState extends State<KeuanganPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Icon(Icons.monetization_on_rounded, size: 50, color: Colors.green),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Laporan()),
+                          );
+                        },
+                        child: Icon(
+                          Icons.monetization_on_rounded,
+                          size: 50,
+                          color: Colors.green,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -140,20 +163,71 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   title: Text("Pengeluaran"),
                   subtitle: Text("Biaya Sewa: "),
                   trailing: Text("Rp. 10.000.000"),
-                  leading: Image.asset( "assets/images/spending.png"),
+                  leading: Image.asset("assets/images/spending.png"),
                 ),
                 Divider(
                   color: Colors.black,
                 ),
-
                 ListTile(
                   title: Text("Pengeluaran"),
                   subtitle: Text("Gaji Karyawan: "),
                   trailing: Text("Rp. 40.000.000"),
-                  leading: Image.asset( "assets/images/spending.png"),
+                  leading: Image.asset("assets/images/spending.png"),
                 ),
-
-            
+                Divider(
+                  color: Colors.black,
+                ),
+                ListTile(
+                  title: Text("Pengeluaran"),
+                  subtitle: Text("Biaya Administrasi: "),
+                  trailing: Text("Rp. 10.000.000"),
+                  leading: Image.asset("assets/images/spending.png"),
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+                ListTile(
+                  title: Text("Pengeluaran"),
+                  subtitle: Text("Biaya Asuransi: "),
+                  trailing: Text("Rp. 25.000.000"),
+                  leading: Image.asset("assets/images/spending.png"),
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+                ListTile(
+                  title: Text("Pendapatan"),
+                  subtitle: Text("Penjualan Langsung: "),
+                  trailing: Text("Rp. 27.000.000"),
+                  leading: Image.asset("assets/images/profit.png"),
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+                ListTile(
+                  title: Text("Pendapatan"),
+                  subtitle: Text("Penjualan di Marketplace: "),
+                  trailing: Text("Rp. 5.000.000"),
+                  leading: Image.asset("assets/images/profit.png"),
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+                ListTile(
+                  title: Text("Pendapatan"),
+                  subtitle: Text("Kerjasama dengan Retailer: "),
+                  trailing: Text("Rp. 10.000.000"),
+                  leading: Image.asset("assets/images/profit.png"),
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+                ListTile(
+                  title: Text("Pendapatan"),
+                  subtitle: Text("Penjualan Melalui Media Sosial:"),
+                  trailing: Text("Rp. 20.000.000"),
+                  leading: Image.asset("assets/images/profit.png"),
+                ),
               ],
             ),
           )
