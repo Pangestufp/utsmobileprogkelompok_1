@@ -1,4 +1,5 @@
 import 'package:app_manajemen_umkm/pages/authentication/login.dart';
+import 'package:app_manajemen_umkm/pages/drawer/Invoice.dart';
 import 'package:app_manajemen_umkm/pages/drawer/pengingatPage.dart';
 import 'package:flutter/material.dart';
 
@@ -81,6 +82,20 @@ class _LeftDrawerState extends State<LeftDrawer> {
             Navigator.pop(context);
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => PengingatPage()));
+          },
+        ),
+        Divider(color: Colors.amber,),
+        ListTile(
+          leading: Icon(
+            Icons.save_alt,
+            color: Colors.amber,
+            size: 40,
+          ),
+          title: Text("Invoice"),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Invoice()));
           },
         ),
         Divider(color: Colors.amber,),

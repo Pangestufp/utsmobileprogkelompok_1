@@ -860,24 +860,118 @@ class _PenjualanPageState extends State<PenjualanPage> {
             ),
             Center(
               child: BounceTapper(
-                child: Card(
-                  color: Colors.amber,
-                  child: Container(
-                    padding: EdgeInsets.only(top: 8, bottom: 8),
-                    width: MediaQuery.of(context).size.width/2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Cetak Invoice",style: TextStyle(color: Colors.white),),
-                        SizedBox(width: 10,),
-                        Icon(Icons.print,color: Colors.white,)
-                      ],
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Masukan data"),
+                            content: Container(
+                              height: 150,
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      hintText: "Nama Pelanggan",
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      hintText: "Alamat Pelanggan",
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Cancel",
+                                    style: TextStyle(color: Colors.amber),
+                                  )),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            content: Container(
+                                              height: 250,
+                                              color: Colors.amber,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "Cetakan ke -1",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  Image.asset(
+                                                      "assets/images/invoice.png")
+                                                ],
+                                              ),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackBar(
+                                                        content: Text("Invoice telah tersimpan"),
+                                                        duration: Duration(seconds: 3)
+                                                      ),
+                                                    );
+
+                                                  },
+                                                  child: Text("Selesai",
+                                                      style: TextStyle(
+                                                          color: Colors.amber)))
+                                            ],
+                                          );
+                                        });
+                                  },
+                                  child: Text("Oke",
+                                      style: TextStyle(color: Colors.amber)))
+                            ],
+                          );
+                        });
+                  },
+                  child: Card(
+                    color: Colors.amber,
+                    child: Container(
+                      padding: EdgeInsets.only(top: 8, bottom: 8),
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Cetak Invoice",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.print,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ).animate().scale(),
+                  ).animate().scale(),
+                ),
               ),
             ),
-            SizedBox(height: 20,)
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
