@@ -1,5 +1,6 @@
 import 'package:app_manajemen_umkm/pages/beranda/homePage.dart';
 import 'package:app_manajemen_umkm/pages/inventaris/tambahkanProduk.dart';
+import 'package:app_manajemen_umkm/pages/inventaris/tambahkanStock.dart';
 import 'package:bounce_tapper/bounce_tapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -19,48 +20,50 @@ class _InventarisPageState extends State<InventarisPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>TambahkanProduk()));
-                    },
-                    child: BounceTapper(
-                      shrinkScaleFactor: 0.7,
-                      child: Card(
-                        color: Colors.amber,
-                        child: Container(
-                            width: 180,
-                            height: 160,
-                            child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Image.asset("assets/icons/addProduct.png",color: Colors.white,width: 100,),
-                                      Text(
-                                        "Tambahkan Produk",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                    ],
-                                  ),
-                                ))),
-                      ).animate().scale(),
-                    ),
-                  ),
-                  SizedBox(width: 20,),
-                  BounceTapper(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>TambahkanProduk()));
+                  },
+                  child: BounceTapper(
                     shrinkScaleFactor: 0.7,
                     child: Card(
                       color: Colors.amber,
                       child: Container(
-                          width: 180,
-                          height: 160,
+                          width: 160,
+                          height: 180,
+                          child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/icons/addProduct.png",color: Colors.white,width: 100,),
+                                    Text(
+                                      "Tambahkan Produk",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                              ))),
+                    ).animate().scale(),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>TambahkanStock()));
+                  },
+                  child: BounceTapper(
+                    shrinkScaleFactor: 0.7,
+                    child: Card(
+                      color: Colors.amber,
+                      child: Container(
+                          width: 160,
+                          height: 180,
                           child: Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -78,9 +81,9 @@ class _InventarisPageState extends State<InventarisPage> {
                                 ),
                               ))),
                     ).animate().scale(),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
           Expanded(
@@ -93,10 +96,10 @@ class _InventarisPageState extends State<InventarisPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: Text(
-                    "20",
+                    "6",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
@@ -109,7 +112,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     "1800",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
@@ -122,7 +125,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     "200",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
@@ -135,7 +138,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     "100", // Tambahkan angka jika ada
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
-                ),
+                ).animate().fade(),
                 Divider(
                   color: Colors.grey.shade400,
                 ),
