@@ -31,7 +31,7 @@ class _PengingatPageState extends State<PengingatPage> {
                 contentPadding: EdgeInsets.all(10),
                 leading: Icon(Icons.warning_rounded,color: Colors.red,),
                 title: Text(
-                  "Pembayaran Sabun Putih",
+                  "Pembayaran Stock Sabun Putih",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -67,7 +67,7 @@ class _PengingatPageState extends State<PengingatPage> {
                 contentPadding: EdgeInsets.all(10),
                 leading: Icon(Icons.warning_rounded,color: Colors.green,),
                 title: Text(
-                  "Pembayaran Sabun Orange",
+                  "Pembayaran Stock Sabun Orange",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -103,7 +103,7 @@ class _PengingatPageState extends State<PengingatPage> {
                 contentPadding: EdgeInsets.all(10),
                 leading: Icon(Icons.warning_rounded,color: Colors.green,),
                 title: Text(
-                  "Pembayaran Sabun Putih",
+                  "Pembayaran Stock Sabun Putih",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,

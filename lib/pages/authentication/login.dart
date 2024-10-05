@@ -1,6 +1,7 @@
 import 'package:app_manajemen_umkm/pages/authentication/register.dart';
 import 'package:app_manajemen_umkm/pages/beranda/homePage.dart';
 import 'package:app_manajemen_umkm/pages/bottomNav.dart';
+import 'package:bounce_tapper/bounce_tapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
@@ -48,87 +49,91 @@ class _LoginState extends State<Login> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           child: Column(
                             children: [
-                              TextFormField(
-                                  decoration: InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: TextStyle(color: Colors.amber),
-                                    labelStyle: TextStyle(color: Colors.amber),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    errorBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    fillColor: Colors.white, // Warna background
-                                    filled: true, // Mengaktifkan background
-                                  ),
-                                  validator: (value) {
-                                    if (value!.contains("@") &&
-                                        value!.endsWith(".com")) {
-                                      return null;
-                                    }
-                                    return 'Email tidak sesuai';
-                                  }),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                  obscureText: _hintText,
-                                  decoration: InputDecoration(
-                                      hintText: 'Password',
+                              BounceTapper(
+                                child: TextFormField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Email',
                                       hintStyle: TextStyle(color: Colors.amber),
-                                      labelStyle:
-                                          TextStyle(color: Colors.amber),
+                                      labelStyle: TextStyle(color: Colors.amber),
                                       enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
+                                          borderRadius: BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                               color: Colors.black, width: 1)),
                                       focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
+                                          borderRadius: BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                               color: Colors.black, width: 1)),
                                       errorBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
+                                          borderRadius: BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                               color: Colors.black, width: 1)),
                                       focusedErrorBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
+                                          borderRadius: BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                               color: Colors.black, width: 1)),
-                                      fillColor: Colors.white,
-                                      filled: true,
-                                      suffixIcon: IconButton(
-                                        icon: Icon(
-                                          _hintText ? Icons.visibility_off : Icons.visibility,
-                                          color: Colors.amber,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            _hintText = !_hintText;
-                                          });
-                                        },
-                                      )
-                                  ),
-                                  validator: (value) {
-                                    if (value!.isEmpty || value == null) {
-                                      return 'Password tidak boleh Kosong';
-                                    }
-                                    return null;
-                                  }),
+                                      fillColor: Colors.white, // Warna background
+                                      filled: true, // Mengaktifkan background
+                                    ),
+                                    validator: (value) {
+                                      if (value!.contains("@") &&
+                                          value!.endsWith(".com")) {
+                                        return null;
+                                      }
+                                      return 'Email tidak sesuai';
+                                    }).animate().scale(),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              BounceTapper(
+                                child: TextFormField(
+                                    obscureText: _hintText,
+                                    decoration: InputDecoration(
+                                        hintText: 'Password',
+                                        hintStyle: TextStyle(color: Colors.amber),
+                                        labelStyle:
+                                            TextStyle(color: Colors.amber),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 1)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 1)),
+                                        errorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 1)),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                                color: Colors.black, width: 1)),
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            _hintText ? Icons.visibility_off : Icons.visibility,
+                                            color: Colors.amber,
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              _hintText = !_hintText;
+                                            });
+                                          },
+                                        )
+                                    ),
+                                    validator: (value) {
+                                      if (value!.isEmpty || value == null) {
+                                        return 'Password tidak boleh Kosong';
+                                      }
+                                      return null;
+                                    }).animate().scale(),
+                              ),
                               SizedBox(
                                 height: 20,
                               ),
@@ -142,7 +147,7 @@ class _LoginState extends State<Login> {
                                   child: Text(
                                     "Sign In",
                                     style: TextStyle(color: Colors.amber),
-                                  )),
+                                  )).animate().scale(),
                             ],
                           )),
                       SizedBox(
@@ -158,7 +163,7 @@ class _LoginState extends State<Login> {
                           child: Text(
                             "Sign up",
                             style: TextStyle(color: Colors.amber),
-                          )),
+                          )).animate().scale(),
                     ],
                   )),
                 ],
