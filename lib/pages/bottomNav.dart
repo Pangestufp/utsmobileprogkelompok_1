@@ -120,7 +120,7 @@ class _BottomNavState extends State<BottomNav> {
           print("Floating Action Button di halaman Keuangan ditekan");
         },
         backgroundColor: Colors.amber,
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,color: Colors.white,),
       )
           : null,
       drawer: _currentIndex==0? LeftDrawer():null,

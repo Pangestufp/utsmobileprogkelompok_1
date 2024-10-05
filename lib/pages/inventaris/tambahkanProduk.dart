@@ -34,161 +34,168 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-            top: 20,
-            left: 20,
-            right: 20,
-          ),
-          child: SingleChildScrollView(
-            child: Form(
-              autovalidateMode: AutovalidateMode.onUnfocus,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                      child: Text(
-                    _edit == true ? "Ubah Item" : "Tambahkan",
-                    style: TextStyle(
-                        color: Colors.amber, fontWeight: FontWeight.bold),
-                  )),
-                  TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Nama Produk",
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                        errorBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                        focusedErrorBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty || value == null) {
-                          return "Nama produk tidak boleh kosong";
-                        }
-                        return null;
-                      }),
-                  TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Deskripsi Produk",
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                        errorBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                        focusedErrorBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.amber, width: 1)),
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty || value == null) {
-                          return "Deskripsi produk tidak boleh kosong";
-                        }
-                        return null;
-                      }),
-                  SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: _pickImage,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 4,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.amber, width: 2)),
-                      child: !inputGambar
-                          ? Center(
-                        child: Text(
-                          "Tidak ada gambar yang dipilih",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      )
-                          : Image.file(
-                        _image!,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "Harga Beli Produk",
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                      errorBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                      focusedErrorBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Harga Beli tidak boleh kosong";
-                      }
-                      if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
-                        return "Hanya angka bulat positif yang diperbolehkan";
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "Harga Jual Produk",
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                      errorBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                      focusedErrorBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.amber, width: 1)),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Harga jual tidak boleh kosong";
-                      }
-                      if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
-                        return "Hanya angka bulat positif yang diperbolehkan";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      _edit == true ? "Edit" : "Tambahkan",
-                      style: TextStyle(
-                          color: Colors.amber, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                ],
+        return StatefulBuilder(
+          builder: (context, StateSetter setModalState) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                top: 20,
+                left: 20,
+                right: 20,
               ),
-            ),
-          ),
+              child: SingleChildScrollView(
+                child: Form(
+                  autovalidateMode: AutovalidateMode.onUnfocus,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                          child: Text(
+                        _edit == true ? "Ubah Item" : "Tambahkan",
+                        style: TextStyle(
+                            color: Colors.amber, fontWeight: FontWeight.bold),
+                      )),
+                      TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Nama Produk",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                            errorBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                            focusedErrorBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty || value == null) {
+                              return "Nama produk tidak boleh kosong";
+                            }
+                            return null;
+                          }),
+                      TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Deskripsi Produk",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                            errorBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                            focusedErrorBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber, width: 1)),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty || value == null) {
+                              return "Deskripsi produk tidak boleh kosong";
+                            }
+                            return null;
+                          }),
+                      SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () async {
+                          await _pickImage();
+                          setModalState(() {});
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height / 4,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.amber, width: 2)),
+                          child: !inputGambar
+                              ? Center(
+                                  child: Text(
+                                    "Tidak ada gambar yang dipilih",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                )
+                              : Image.file(
+                                  _image!,
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "Harga Beli Produk",
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Harga Beli tidak boleh kosong";
+                          }
+                          if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
+                            return "Hanya angka bulat positif yang diperbolehkan";
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "Harga Jual Produk",
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.amber, width: 1)),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Harga jual tidak boleh kosong";
+                          }
+                          if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
+                            return "Hanya angka bulat positif yang diperbolehkan";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          _edit == true ? "Edit" : "Tambahkan",
+                          style: TextStyle(
+                              color: Colors.amber, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
         );
       },
     );

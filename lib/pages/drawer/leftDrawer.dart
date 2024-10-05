@@ -1,5 +1,5 @@
 import 'package:app_manajemen_umkm/pages/authentication/login.dart';
-import 'package:app_manajemen_umkm/pages/drawer/peringatanPage.dart';
+import 'package:app_manajemen_umkm/pages/drawer/pengingatPage.dart';
 import 'package:flutter/material.dart';
 
 class LeftDrawer extends StatefulWidget {
@@ -57,7 +57,24 @@ class _LeftDrawerState extends State<LeftDrawer> {
             Icons.notification_important,
             color: Colors.amber,
           ),
-          trailing: Icon(Icons.looks_5,color: Colors.red,),
+          trailing: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Text(
+                "3",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
           title: Text("Pengingat"),
           onTap: () {
             Navigator.pop(context);

@@ -11,7 +11,7 @@ class TambahkanStock extends StatefulWidget {
 }
 
 class _TambahkanStockState extends State<TambahkanStock> {
-  bool? _statusPembayaran=false;
+  bool? isPaid = false;
   DateTime? _selectedDate;
   Future<DateTime> _selectDate(DateTime selectedDate) async {
     DateTime _initialDate = selectedDate;
@@ -129,113 +129,144 @@ class _TambahkanStockState extends State<TambahkanStock> {
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-            top: 20,
-            left: 20,
-            right: 20,
-          ),
-          child: SingleChildScrollView(
-            child: Form(
-              autovalidateMode: AutovalidateMode.onUnfocus,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(child: Text("Tambahkan Stock "+name,style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),)),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "Jumlah Produk",
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.amber, width: 1)),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.amber, width: 1)),
-                      errorBorder: UnderlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.amber, width: 1)),
-                      focusedErrorBorder: UnderlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.amber, width: 1)),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Jumlah tidak boleh kosong";
-                      }
-                      if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
-                        return "Hanya angka bulat positif yang diperbolehkan";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 10,),
-                  TextButton(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Tanggal pelunasan",style: TextStyle(color: Colors.black54,fontSize: 16),),
-                        SizedBox(height: 3,),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.calendar_today,
-                              size: 20.0,
-                              color: Colors.black54,
-                            ),
-                            SizedBox(width: 5,),
-                            Text(
-                              DateFormat.yMMMEd().format(_selectedDate!),
-                              style: TextStyle(
-                                  color: Colors.black54, fontWeight: FontWeight.bold),
-                            ),
-                            Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black54,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    onPressed: () async {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      DateTime _pickerDate = await _selectDate(_selectedDate!);
-                      setState(() {
-                        _selectedDate = _pickerDate;
-                      });
-                    },
-                  ),
-                  TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Cacatan",
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide:
-                            BorderSide(color: Colors.amber, width: 1)),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                            BorderSide(color: Colors.amber, width: 1)),
-                        errorBorder: UnderlineInputBorder(
-                            borderSide:
-                            BorderSide(color: Colors.amber, width: 1)),
-                        focusedErrorBorder: UnderlineInputBorder(
-                            borderSide:
-                            BorderSide(color: Colors.amber, width: 1)),
-                      ),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("Tambahkan Stock",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),),
-                  ),
-                  SizedBox(height: 20),
-                ],
+        return StatefulBuilder(
+          builder: (context, StateSetter setModalState) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                top: 20,
+                left: 20,
+                right: 20,
               ),
-            ),
-          ),
+              child: SingleChildScrollView(
+                child: Form(
+                  autovalidateMode: AutovalidateMode.onUnfocus,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(child: Text("Tambahkan Stock "+name,style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),)),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "Jumlah Produk",
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.amber, width: 1)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.amber, width: 1)),
+                          errorBorder: UnderlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.amber, width: 1)),
+                          focusedErrorBorder: UnderlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.amber, width: 1)),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Jumlah tidak boleh kosong";
+                          }
+                          if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
+                            return "Hanya angka bulat positif yang diperbolehkan";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 10,),
+                      TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Cacatan",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            errorBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            focusedErrorBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                          ),
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        children: [
+                          Text("Status Pembayaran: "),
+                          Row(
+                            children: [
+                              Radio<bool>(
+                                value: true,
+                                groupValue: isPaid,
+                                onChanged: (value) {
+                                  setModalState(() {
+                                    isPaid = value;
+                                  });
+                                },
+                              ),
+                              Text("Lunas"),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Radio<bool>(
+                                value: false,
+                                groupValue: isPaid,
+                                onChanged: (value) {
+                                  setModalState(() {
+                                    isPaid = value;
+                                  });
+                                },
+                              ),
+                              Text("Belum Lunas"),
+                            ],
+                          ),
+                        ],
+                      ),
+                      if (isPaid == false)
+                        TextButton(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Tanggal jatuh tempo pembayaran", style: TextStyle(color: Colors.black54, fontSize: 16)),
+                              SizedBox(height: 3),
+                              Row(
+                                children: [
+                                  Icon(Icons.calendar_today, size: 20.0, color: Colors.black54),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    DateFormat.yMMMEd().format(_selectedDate ?? DateTime.now()),
+                                    style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+                                  ),
+                                  Icon(Icons.arrow_drop_down, color: Colors.black54),
+                                ],
+                              ),
+                            ],
+                          ),
+                          onPressed: () async {
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            DateTime pickerDate = await _selectDate(_selectedDate ?? DateTime.now());
+                            setModalState(() {
+                              _selectedDate = pickerDate;
+                            });
+                          },
+                        ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("Tambahkan Stock", style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold)),
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
         );
       },
     );
