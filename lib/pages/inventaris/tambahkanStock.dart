@@ -192,9 +192,9 @@ class _TambahkanStockState extends State<TambahkanStock> {
                           ),
                       ),
                       SizedBox(height: 10,),
+                      Text("Status Pembayaran : "),
                       Row(
                         children: [
-                          Text("Status Pembayaran: "),
                           Row(
                             children: [
                               Radio<bool>(

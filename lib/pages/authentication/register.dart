@@ -12,7 +12,9 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   bool _hintText = true;
-
+  bool _hintText2 = true;
+  TextEditingController _password = TextEditingController();
+  TextEditingController _password2 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,22 +25,16 @@ class _RegisterState extends State<Register> {
           Positioned.fill(
             child: LottieBuilder.asset(
               "assets/lotties/backgroundLogin.json",
-              fit: BoxFit.cover, // memastikan background menutupi seluruh layar
-            ),
-          ),
-          Container(
-            alignment: Alignment.topCenter,
-            child: Positioned.fill(
-              child: LottieBuilder.asset(
-                "assets/lotties/backgroundLogin.json",
-                fit: BoxFit.fill,// memastikan background menutupi seluruh layar
-              ),
+              fit: BoxFit.cover,
+              repeat: true,
+              reverse: true,
             ),
           ),
           SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(top: 20, left: 60, right: 60),
               child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                 children: [
                   Padding(
@@ -75,12 +71,18 @@ class _RegisterState extends State<Register> {
                       fillColor: Colors.white, // Warna background
                       filled: true, // Mengaktifkan background
                     ),
+                      validator: (value) {
+                        if (value!.contains("@") &&
+                            value!.endsWith(".com")) {
+                          return null;
+                        }
+                        return 'Email tidak sesuai';
+                      }
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    obscureText: _hintText,
                     decoration: InputDecoration(
                       hintText: 'Nama Toko',
                       hintStyle: TextStyle(color: Colors.amber),
@@ -104,12 +106,19 @@ class _RegisterState extends State<Register> {
                       fillColor: Colors.white, // Warna background
                       filled: true, // Mengaktifkan background
                     ),
+                      validator: (value) {
+                        if (value!.isEmpty || value == null) {
+                          return "Nama toko tidak boleh kosong";
+                        }
+                        return null;
+                      }
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     obscureText: _hintText,
+                    controller: _password,
                     decoration: InputDecoration(
                       hintText: 'Password',
                       hintStyle: TextStyle(color: Colors.amber),
@@ -130,15 +139,33 @@ class _RegisterState extends State<Register> {
                           borderRadius: BorderRadius.circular(30),
                           borderSide:
                               BorderSide(color: Colors.black, width: 1)),
-                      fillColor: Colors.white, // Warna background
-                      filled: true, // Mengaktifkan background
+                      fillColor: Colors.white,
+                      filled: true,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _hintText ? Icons.visibility_off : Icons.visibility,
+                            color: Colors.amber,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _hintText = !_hintText;
+                            });
+                          },
+                        )
                     ),
+                      validator: (value) {
+                        if (value!.isEmpty || value == null) {
+                          return 'Password tidak boleh Kosong';
+                        }
+                        return null;
+                      }
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    obscureText: _hintText,
+                    controller: _password2,
+                    obscureText: _hintText2,
                     decoration: InputDecoration(
                       hintText: 'Konfirmasi Password',
                       hintStyle: TextStyle(color: Colors.amber),
@@ -159,9 +186,26 @@ class _RegisterState extends State<Register> {
                           borderRadius: BorderRadius.circular(30),
                           borderSide:
                           BorderSide(color: Colors.black, width: 1)),
-                      fillColor: Colors.white, // Warna background
-                      filled: true, // Mengaktifkan background
+                      fillColor: Colors.white,
+                      filled: true,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _hintText2 ? Icons.visibility_off : Icons.visibility,
+                            color: Colors.amber,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _hintText2 = !_hintText2;
+                            });
+                          },
+                        )
                     ),
+                      validator: (value) {
+                        if (_password2.text != _password.text) {
+                          return 'Konfirmasi salah';
+                        }
+                        return null;
+                      }
                   ),
                   SizedBox(
                     height: 20,
@@ -181,7 +225,8 @@ class _RegisterState extends State<Register> {
                     height: 10,
                   ),
                 ],
-              )),
+              )
+              ),
             ),
           ),
         ],

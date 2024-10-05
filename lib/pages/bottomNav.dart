@@ -14,7 +14,7 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-
+  bool? isPaid=true;
   int _currentIndex = 0;
   List<Widget> _listPages = [];
   List<String> _listNamePages = [];
@@ -50,6 +50,125 @@ class _BottomNavState extends State<BottomNav> {
       _currentPage = _listPages[selectedIndex];
       _currentNamePage = _listNamePages[selectedIndex];
     });
+  }
+
+  void _addCacatan() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+            builder: (context, StateSetter setModalState) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                ),
+                child: SingleChildScrollView(
+                  child: Form(
+                    autovalidateMode: AutovalidateMode.onUnfocus,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(child: Text("Tambahkan cacatan",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),)),
+                        Text("Jenis cacatan : "),
+                        Row(
+                          children: [
+                            Row(
+                              children: [
+                                Radio<bool>(
+                                  value: true,
+                                  groupValue: isPaid,
+                                  onChanged: (value) {
+                                    setModalState(() {
+                                      isPaid = value;
+                                    });
+                                  },
+                                ),
+                                Text("Pengeluaran"),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Radio<bool>(
+                                  value: false,
+                                  groupValue: isPaid,
+                                  onChanged: (value) {
+                                    setModalState(() {
+                                      isPaid = value;
+                                    });
+                                  },
+                                ),
+                                Text("Pemasukan"),
+                              ],
+                            ),
+                          ],
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Isi cacatan",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            errorBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            focusedErrorBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: "Jumlah",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            errorBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                            focusedErrorBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.amber, width: 1)),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Jumlah tidak boleh kosong";
+                            }
+                            if (!RegExp(r'^[1-9][0-9]*$').hasMatch(value)) {
+                              return "Hanya angka bulat positif yang diperbolehkan";
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("Tambahkan Cacatan", style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold)),
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+        );
+      },
+    );
   }
 
 
@@ -117,7 +236,7 @@ class _BottomNavState extends State<BottomNav> {
       floatingActionButton: _currentIndex == 2
           ? FloatingActionButton(
         onPressed: () {
-          print("Floating Action Button di halaman Keuangan ditekan");
+          _addCacatan();
         },
         backgroundColor: Colors.amber,
         child: Icon(Icons.add,color: Colors.white,),
