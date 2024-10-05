@@ -1,4 +1,5 @@
 import 'package:app_manajemen_umkm/pages/beranda/homePage.dart';
+import 'package:app_manajemen_umkm/pages/drawer/leftDrawer.dart';
 import 'package:app_manajemen_umkm/pages/inventaris/inventarisPage.dart';
 import 'package:app_manajemen_umkm/pages/keuangan/keuanganPage.dart';
 import 'package:app_manajemen_umkm/pages/penjualan/penjualanPage.dart';
@@ -58,6 +59,9 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         backgroundColor:Colors.amber,
         title: Center(
           child: Text(
@@ -119,7 +123,7 @@ class _BottomNavState extends State<BottomNav> {
         child: Icon(Icons.add),
       )
           : null,
-
+      drawer: _currentIndex==0? LeftDrawer():null,
     );
   }
 }
