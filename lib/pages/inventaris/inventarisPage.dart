@@ -32,8 +32,8 @@ class _InventarisPageState extends State<InventarisPage> {
                     child: Card(
                       color: Colors.amber,
                       child: Container(
-                          width: 180,
-                          height: 160,
+                          width: 160,
+                          height: 180,
                           child: Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -62,8 +62,8 @@ class _InventarisPageState extends State<InventarisPage> {
                     child: Card(
                       color: Colors.amber,
                       child: Container(
-                          width: 180,
-                          height: 160,
+                          width: 160,
+                          height: 180,
                           child: Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),

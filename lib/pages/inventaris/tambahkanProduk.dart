@@ -15,6 +15,7 @@ class TambahkanProduk extends StatefulWidget {
 class _TambahkanProdukState extends State<TambahkanProduk> {
   File? _image;
   bool _edit = false;
+  bool inputGambar = false;
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -23,6 +24,7 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
+        inputGambar = true;
       });
     }
   }
@@ -46,7 +48,12 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(child: Text(_edit == true ? "Ubah Item" : "Tambahkan",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),)),
+                  Center(
+                      child: Text(
+                    _edit == true ? "Ubah Item" : "Tambahkan",
+                    style: TextStyle(
+                        color: Colors.amber, fontWeight: FontWeight.bold),
+                  )),
                   TextFormField(
                       decoration: InputDecoration(
                         hintText: "Nama Produk",
@@ -91,6 +98,27 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
                         }
                         return null;
                       }),
+                  SizedBox(height: 10),
+                  GestureDetector(
+                    onTap: _pickImage,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 4,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.amber, width: 2)),
+                      child: !inputGambar
+                          ? Center(
+                        child: Text(
+                          "Tidak ada gambar yang dipilih",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      )
+                          : Image.file(
+                        _image!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -145,28 +173,16 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: _pickImage,
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 4,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.amber, width: 2)),
-                        child: _image == null
-                            ? Center(
-                                child: Text(
-                                "Tidak ada gambar yang dipilih",
-                                style: TextStyle(color: Colors.grey),
-                              ))
-                            : Image.file(_image!)),
-                  ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(_edit == true ? "Edit" : "Tambahkan",style: TextStyle(color: Colors.amber,fontWeight: FontWeight.bold),),
+                    child: Text(
+                      _edit == true ? "Edit" : "Tambahkan",
+                      style: TextStyle(
+                          color: Colors.amber, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   SizedBox(height: 20),
                 ],
@@ -241,272 +257,270 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
           Padding(
             padding:
                 EdgeInsets.only(top: MediaQuery.of(context).size.height / 8),
-            child: Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      _edit = true;
-                      _createOrUpdateItem();
-                    },
-                    child: BounceTapper(
-                      child: Card(
-                        color: Colors.amber,
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(10)),
-                                child: Image.asset(
-                                  "assets/images/sabunBiru.jpg",
-                                  fit: BoxFit.cover,
-                                ),
+            child: GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 5,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    _edit = true;
+                    _createOrUpdateItem();
+                  },
+                  child: BounceTapper(
+                    child: Card(
+                      color: Colors.amber,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/images/sabunBiru.jpg",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sabun Biru",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Sabun Biru",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ).animate().scale(),
-                    ),
+                          ),
+                        ],
+                      ),
+                    ).animate().scale(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _edit = true;
-                      _createOrUpdateItem();
-                    },
-                    child: BounceTapper(
-                      child: Card(
-                        color: Colors.amber,
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(10)),
-                                child: Image.asset(
-                                  "assets/images/sabunHijau.jpg",
-                                  fit: BoxFit.cover,
-                                ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _edit = true;
+                    _createOrUpdateItem();
+                  },
+                  child: BounceTapper(
+                    child: Card(
+                      color: Colors.amber,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/images/sabunHijau.jpg",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sabun Hijau",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Sabun Hijau",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ).animate().scale(),
-                    ),
+                          ),
+                        ],
+                      ),
+                    ).animate().scale(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _edit = true;
-                      _createOrUpdateItem();
-                    },
-                    child: BounceTapper(
-                      child: Card(
-                        color: Colors.amber,
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(10)),
-                                child: Image.asset(
-                                  "assets/images/sabunKuning.jpg",
-                                  fit: BoxFit.cover,
-                                ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _edit = true;
+                    _createOrUpdateItem();
+                  },
+                  child: BounceTapper(
+                    child: Card(
+                      color: Colors.amber,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/images/sabunKuning.jpg",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sabun Kuning",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Sabun Kuning",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ).animate().scale(),
-                    ),
+                          ),
+                        ],
+                      ),
+                    ).animate().scale(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _edit = true;
-                      _createOrUpdateItem();
-                    },
-                    child: BounceTapper(
-                      child: Card(
-                        color: Colors.amber,
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(10)),
-                                child: Image.asset(
-                                  "assets/images/sabunMerah.jpg",
-                                  fit: BoxFit.cover,
-                                ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _edit = true;
+                    _createOrUpdateItem();
+                  },
+                  child: BounceTapper(
+                    child: Card(
+                      color: Colors.amber,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/images/sabunMerah.jpg",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sabun Merah",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Sabun Merah",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ).animate().scale(),
-                    ),
+                          ),
+                        ],
+                      ),
+                    ).animate().scale(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _edit = true;
-                      _createOrUpdateItem();
-                    },
-                    child: BounceTapper(
-                      child: Card(
-                        color: Colors.amber,
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(10)),
-                                child: Image.asset(
-                                  "assets/images/sabunOrange.jpg",
-                                  fit: BoxFit.cover,
-                                ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _edit = true;
+                    _createOrUpdateItem();
+                  },
+                  child: BounceTapper(
+                    child: Card(
+                      color: Colors.amber,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/images/sabunOrange.jpg",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sabun Orange",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Sabun Orange",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ).animate().scale(),
-                    ),
+                          ),
+                        ],
+                      ),
+                    ).animate().scale(),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _edit = true;
-                      _createOrUpdateItem();
-                    },
-                    child: BounceTapper(
-                      child: Card(
-                        color: Colors.amber,
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(10)),
-                                child: Image.asset(
-                                  "assets/images/sabunPutih.jpg",
-                                  fit: BoxFit.cover,
-                                ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _edit = true;
+                    _createOrUpdateItem();
+                  },
+                  child: BounceTapper(
+                    child: Card(
+                      color: Colors.amber,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/images/sabunPutih.jpg",
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sabun Putih",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Sabun Putih",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
-                      ).animate().scale(),
-                    ),
+                          ),
+                        ],
+                      ),
+                    ).animate().scale(),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           )
         ],
