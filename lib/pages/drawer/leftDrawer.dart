@@ -56,6 +56,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
           leading: Icon(
             Icons.notification_important,
             color: Colors.amber,
+            size: 40,
           ),
           trailing: Container(
             width: 40,
@@ -87,6 +88,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
           leading: Icon(
             Icons.settings,
             color: Colors.amber,
+            size: 40,
           ),
           title: Text("Setting"),
           onTap: () {},
@@ -96,6 +98,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
           leading: Icon(
             Icons.logout_sharp,
             color: Colors.red,
+            size: 40,
           ),
           title: Text(
             "Log Out",

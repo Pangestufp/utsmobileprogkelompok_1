@@ -13,15 +13,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool _hintText = true;
   @override
   Widget build(BuildContext context) {
-    bool _hintText = true;
     return Scaffold(
       backgroundColor: Colors.amber,
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          Positioned.fill(
+          SizedBox.expand(
             child: LottieBuilder.asset(
               "assets/lotties/backgroundLogin.json",
               fit: BoxFit.cover,
@@ -38,7 +38,9 @@ class _LoginState extends State<Login> {
                     "assets/icons/tanpaBgLogo.png",
                     width: 200,
                   ).animate().fade(duration: Duration(seconds: 3)),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Form(
                       child: Column(
                     children: [
@@ -83,31 +85,36 @@ class _LoginState extends State<Login> {
                               TextFormField(
                                   obscureText: _hintText,
                                   decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    hintStyle: TextStyle(color: Colors.amber),
-                                    labelStyle: TextStyle(color: Colors.amber),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    errorBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                        borderSide: BorderSide(
-                                            color: Colors.black, width: 1)),
-                                    fillColor: Colors.white,
-                                    filled: true,
+                                      hintText: 'Password',
+                                      hintStyle: TextStyle(color: Colors.amber),
+                                      labelStyle:
+                                          TextStyle(color: Colors.amber),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1)),
+                                      errorBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1)),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 1)),
+                                      fillColor: Colors.white,
+                                      filled: true,
                                       suffixIcon: IconButton(
                                         icon: Icon(
-                                          _hintText
-                                              ? Icons.visibility_off : Icons.visibility, color: Colors.amber,
+                                          _hintText ? Icons.visibility_off : Icons.visibility,
+                                          color: Colors.amber,
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -153,8 +160,7 @@ class _LoginState extends State<Login> {
                             style: TextStyle(color: Colors.amber),
                           )),
                     ],
-                  )
-                  ),
+                  )),
                 ],
               ),
             ),

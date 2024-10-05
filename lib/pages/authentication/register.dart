@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          Positioned.fill(
+          SizedBox.expand(
             child: LottieBuilder.asset(
               "assets/lotties/backgroundLogin.json",
               fit: BoxFit.cover,

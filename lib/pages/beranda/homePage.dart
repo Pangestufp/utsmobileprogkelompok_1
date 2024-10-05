@@ -1,3 +1,4 @@
+import 'package:app_manajemen_umkm/pages/drawer/pengingatPage.dart';
 import 'package:bounce_tapper/bounce_tapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -138,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                             width: 125,
                             child: Column(
                               children: [
-                                Icon(Icons.monetization_on_outlined,color: Colors.white,size: 40,),
-                                Text("Cacatan Keuangan", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
+                                Icon(Icons.auto_graph,color: Colors.white,size: 40,),
+                                Text("Pantau Keuangan", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
                               ],
                             ),
                           ),
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   GestureDetector(
                     onTap: (){
-
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>PengingatPage()));
                     },
                     child: BounceTapper(
                       shrinkScaleFactor: 0.8,
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               children: [
                                 Icon(Icons.notification_important_outlined,color: Colors.white,size: 40,),
-                                Text("Cek Pembayaran", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
+                                Text("Cek Pengingat", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
                               ],
                             ),
                           ),
