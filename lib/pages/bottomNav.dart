@@ -5,6 +5,7 @@ import 'package:app_manajemen_umkm/pages/keuangan/keuanganPage.dart';
 import 'package:app_manajemen_umkm/pages/penjualan/penjualanPage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -26,6 +27,29 @@ class _BottomNavState extends State<BottomNav> {
   late InventarisPage inventarisPage;
   late PenjualanPage penjualanPage;
   late KeuanganPage keuanganPage;
+
+  DateTime? _selectedDate;
+  Future<DateTime> _selectDate(DateTime selectedDate) async {
+    DateTime _initialDate = selectedDate;
+    final DateTime? _pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _initialDate,
+      firstDate: DateTime.now().subtract(Duration(days: 365)),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    );
+    if (_pickedDate != null) {
+      selectedDate = DateTime(
+          _pickedDate.year,
+          _pickedDate.month,
+          _pickedDate.day,
+          _initialDate.hour,
+          _initialDate.minute,
+          _initialDate.second,
+          _initialDate.millisecond,
+          _initialDate.microsecond);
+    }
+    return selectedDate;
+  }
 
   @override
   void initState() {
@@ -107,7 +131,36 @@ class _BottomNavState extends State<BottomNav> {
                             ),
                           ],
                         ),
+                        TextButton(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Tanggal", style: TextStyle(color: Colors.black54, fontSize: 16)),
+                              SizedBox(height: 3),
+                              Row(
+                                children: [
+                                  Icon(Icons.calendar_today, size: 20.0, color: Colors.black54),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    DateFormat.yMMMEd().format(_selectedDate ?? DateTime.now()),
+                                    style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+                                  ),
+                                  Icon(Icons.arrow_drop_down, color: Colors.black54),
+                                ],
+                              ),
+                            ],
+                          ),
+                          onPressed: () async {
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            DateTime pickerDate = await _selectDate(_selectedDate ?? DateTime.now());
+                            setModalState(() {
+                              _selectedDate = pickerDate;
+                            });
+                          },
+                        ),
                         TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
                           decoration: InputDecoration(
                             hintText: "Isi cacatan",
                             enabledBorder: UnderlineInputBorder(

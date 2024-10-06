@@ -72,8 +72,8 @@ class _RegisterState extends State<Register> {
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide:
                                     BorderSide(color: Colors.black, width: 1)),
-                            fillColor: Colors.white, // Warna background
-                            filled: true, // Mengaktifkan background
+                            fillColor: Colors.white,
+                            filled: true,
                           ),
                             validator: (value) {
                               if (value!.contains("@") &&
@@ -109,8 +109,8 @@ class _RegisterState extends State<Register> {
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide:
                                 BorderSide(color: Colors.black, width: 1)),
-                            fillColor: Colors.white, // Warna background
-                            filled: true, // Mengaktifkan background
+                            fillColor: Colors.white,
+                            filled: true,
                           ),
                             validator: (value) {
                               if (value!.isEmpty || value == null) {

@@ -91,6 +91,8 @@ class _TambahkanStockState extends State<TambahkanStock> {
                     },
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     decoration: InputDecoration(
                       hintText: "Cacatan",
                       enabledBorder: UnderlineInputBorder(
@@ -175,6 +177,8 @@ class _TambahkanStockState extends State<TambahkanStock> {
                       ),
                       SizedBox(height: 10,),
                       TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
                           decoration: InputDecoration(
                             hintText: "Cacatan",
                             enabledBorder: UnderlineInputBorder(
@@ -271,6 +275,7 @@ class _TambahkanStockState extends State<TambahkanStock> {
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

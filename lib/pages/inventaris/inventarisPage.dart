@@ -135,7 +135,7 @@ class _InventarisPageState extends State<InventarisPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: Text(
-                    "100", // Tambahkan angka jika ada
+                    "100",
                     style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
                 ).animate().fade(),

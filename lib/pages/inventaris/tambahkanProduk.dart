@@ -79,6 +79,8 @@ class _TambahkanProdukState extends State<TambahkanProduk> {
                             return null;
                           }),
                       TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
                           decoration: InputDecoration(
                             hintText: "Deskripsi Produk",
                             enabledBorder: UnderlineInputBorder(
