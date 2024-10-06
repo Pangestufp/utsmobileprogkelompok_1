@@ -1,5 +1,7 @@
+import 'package:app_manajemen_umkm/pages/authentication/login.dart';
 import 'package:app_manajemen_umkm/pages/keuangan/laporanKeuangan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class KeuanganPage extends StatefulWidget {
   const KeuanganPage({super.key});
@@ -93,7 +95,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                 ),
             ],
           ),
-        ),
+        ).animate().scale(),
         Padding(
           padding: const EdgeInsets.only(top: 2, left: 10, right: 10),
           child: Card(
@@ -155,7 +157,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                 ],
               ),
             ),
-          ),
+          ).animate().scale(),
         ),
         Expanded(
           child: ListView(
@@ -172,7 +174,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/spending.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -188,7 +190,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/profit.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -204,7 +206,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/profit.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -220,7 +222,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/profit.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -236,7 +238,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/profit.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -252,7 +254,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/spending.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -268,7 +270,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/spending.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -284,7 +286,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/spending.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
@@ -300,7 +302,7 @@ class _KeuanganPageState extends State<KeuanganPage> {
                   ],
                 ),
                 leading: Image.asset("assets/images/spending.png"),
-              ),
+              ).animate().fade(),
               Divider(
                 color: Colors.black,
               ),
